@@ -9,7 +9,7 @@ const TaskList = ({data}) => {
   return (
     <div id="tasklist" className='h-[55%] overflow-x-auto flex items-center justify-start gap-5 w-full flex-nowrap py-5 mt-10'>
       {data.tasks.map((elem,idx) => {
-        // console.log(elem);
+        console.log(elem);
         if(elem.active){
           return <AcceptTask key={idx} data={elem}/>
         }

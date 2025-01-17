@@ -47,7 +47,7 @@ const Login = ({ handleLogin }) => {
             value={password}
             onChange={(e) => {
               console.log(e.target.value);
-              // setEmail mein value set hojayega password by targeting the value
+              // setPassword mein value set hojayega password by targeting the value
               setPassword(e.target.value);
             }}
             required

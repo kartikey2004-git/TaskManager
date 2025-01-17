@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 const FailedTask = ({data}) => {
-  // console.log(data);
+  console.log(data);
   
   return (
     <div className=" flex-shrink-0 h-full w-[300px] p-5 bg-gray-800 rounded-xl">

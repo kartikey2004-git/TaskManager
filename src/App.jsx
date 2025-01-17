@@ -10,16 +10,16 @@ const App = () => {
   //   // setLocalStorage()
   //   getLocalStorage()
   // })
+  // for more reference 1:24:39 timestamps
 
   const [user,setUser] = useState(null)
-
   const [loggedInUserData, setloggedInUserData] = useState(null)
-
-  const authData = useContext(AuthContext)
+  // const authData = useContext(AuthContext)
+  // eslint-disable-next-line no-unused-vars
+  const [userData,setUserData] = useContext(AuthContext)
 
   // useEffect(() => {
   //   if(authData){
-  //    
   //     if(loggedInUser){
   //       setUser(loggedInUser.role)
   //     }
@@ -30,10 +30,10 @@ const App = () => {
     const loggedInUser = localStorage.getItem("loggedInUser")
 
     if(loggedInUser){
-      // console.log("User loggedIn");
+      console.log("User loggedIn");
       const userData = JSON.parse(loggedInUser)
 
-      // console.log(userData);
+      console.log(userData);
       setUser(userData.role)
       setloggedInUserData(userData.data)
     }
@@ -41,15 +41,18 @@ const App = () => {
   
 
   const handleLogin = (email,password) => {
+    console.log(email,password);
+    
     if(email == 'admin@me.com' && password == '123'){
+      console.log("This is admin");
       
       setUser("admin")
       
       localStorage.setItem('loggedInUser',JSON.stringify({role:'admin'}))
     }
 
-    else if(authData && authData.employees){
-      const employee = authData.employees.find((e) => email == e.email && e.password == password)
+    else if(userData){
+      const employee = userData.find((e) => email == e.email && e.password == password)
       
       if(employee){
         setUser('employee')

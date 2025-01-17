@@ -5,12 +5,7 @@ const AllTask = () => {
   // eslint-disable-next-line no-unused-vars
   const [userData,setUserData] = useContext(AuthContext);
   
-
-  if (!userData || !userData.employees) {
-    return <div>No task data available</div>;
-  }
-
-  else{
+  
     return (
       <div className="bg-gray-800 p-5 rounded mt-5 h-64">
         <div className=" border-2 border-cyan-500  mb-4 py-3 px-4 flex justify-between rounded">
@@ -22,7 +17,8 @@ const AllTask = () => {
         </div>
   
         <div id="alltask" className="h-[80%] overflow-auto">
-          {userData.map(function (elem,idx) {
+          { userData.map(function (elem,idx) {
+            // console.log(userData);
             return (
               <div key={idx} className=" border-2 border-cyan-500  mb-4 py-3 px-4 flex justify-between rounded">
                 <h2 className="w-1/5 text-lg font-medium">{elem.firstName}</h2>
@@ -37,5 +33,4 @@ const AllTask = () => {
       </div>
     );
   }
-};
 export default AllTask;

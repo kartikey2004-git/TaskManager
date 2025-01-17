@@ -289,7 +289,11 @@ export const getLocalStorage = () => {
   const employees = JSON.parse(localStorage.getItem("employees"));
   const admin = JSON.parse(localStorage.getItem("admin"));
 
-  return { employees, admin };
+  console.log(employees, admin);
 
-  // JSON.parse() is used to convert a JSON string back into a JavaScript object
+  // JSON.parse() is a method in JavaScript that parses a JSON string, constructing the JavaScript object or value described by the string. It is commonly used to convert data received in JSON format (like from an API) into a usable JavaScript object.
+
+  // JSON.stringify() is a method in JavaScript that converts a JavaScript object or value to a JSON string. It is often used when you need to send data to a server or store it as JSON.
+
+  return { employees, admin };
 };

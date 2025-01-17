@@ -7,13 +7,15 @@ export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
+  console.log(children);
+  
   // localStorage.clear()
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     setLocalStorage()
-    const { employees } = getLocalStorage();
-    setUserData( employees);
+    const { employees , admin} = getLocalStorage();
+    setUserData( employees , admin);
   }, []);
 
   return (
@@ -25,3 +27,8 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+
+
+// pro tip for me jo context hota hai usme jo children hum pass krte hai , wo ek Symbol data type hota hai 
+
+// for more details check insights 

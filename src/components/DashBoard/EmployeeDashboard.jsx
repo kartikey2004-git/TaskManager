@@ -4,6 +4,7 @@ import TaskListNumber from '../Other/TaskListNumber.jsx'
 import TaskList from '../TaskList/TaskList.jsx'
 
 const EmployeeDashboard = (props) => {
+  console.log(props);
   
   return (
       <div className='p-10 bg-[#1C1C1C] h-screen'>

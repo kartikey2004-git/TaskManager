@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 const TaskListNumber = ({data}) => {
+  console.log(data);
   return (
     <div className='flex mt-10 justify-between gap-5 screen'>
 
