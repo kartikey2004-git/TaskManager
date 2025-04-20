@@ -1,20 +1,22 @@
 /* eslint-disable react/prop-types */
 const FailedTask = ({data}) => {
-  console.log(data);
-  
   return (
-    <div className=" flex-shrink-0 h-full w-[300px] p-5 bg-gray-800 rounded-xl">
+    <div className="flex-shrink-0 w-[300px] p-6 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 shadow-lg hover:shadow-red-500/10 transition-all duration-200">
       <div className="flex justify-between items-center">
-        <h3 className="bg-cyan-600 text-sm px-3 py-1 rounded">{data.category}</h3>
-        <h4 className="text-sm">{data.taskDate}</h4>
+        <span className="bg-gradient-to-r from-red-500 to-red-600 text-sm px-3 py-1 rounded-full font-medium">
+          {data.category}
+        </span>
+        <span className="text-sm text-gray-400">{data.taskDate}</span>
       </div>
 
-      <h2 className="mt-5 text-2xl font-semibold">{data.taskTitle}</h2>
-      <p className="text-sm mt-2">
-      {data.taskDescription}
+      <h2 className="mt-4 text-xl font-bold text-gray-200">{data.taskTitle}</h2>
+      <p className="text-sm mt-2 text-gray-400 line-clamp-3">
+        {data.taskDescription}
       </p>
-      <div className="mt-2">
-        <button className="w-full">Failed</button>
+      <div className="mt-6">
+        <button className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white font-medium py-2 px-4 rounded-xl opacity-75 cursor-not-allowed">
+          Failed
+        </button>
       </div>
     </div>
   );

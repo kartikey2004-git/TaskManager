@@ -1,30 +1,27 @@
 /* eslint-disable react/prop-types */
 
 const TaskListNumber = ({data}) => {
-  console.log(data);
   return (
-    <div className='flex mt-10 justify-between gap-5 screen'>
-
-      <div className=' rounded-xl w-[45%] px-9 py-6 bg-[#8E44AD]'> 
-        <h2 className='text-3xl font-semibold'>{data.taskCounts.newTask}</h2>
-        <h3 className='text-xl font-medium'>New task</h3>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="bg-gradient-to-br from-purple-600 to-purple-800 rounded-2xl p-6 shadow-lg hover:shadow-purple-500/20 transition-all duration-200">
+        <h2 className="text-4xl font-bold mb-2">{data.taskCounts.newTask}</h2>
+        <h3 className="text-lg font-medium text-purple-100">New Tasks</h3>
       </div>
 
-      <div className=' rounded-xl w-[45%] px-9 py-6 bg-[#E67E22]'> 
-        <h2 className='text-3xl font-semibold'>{data.taskCounts.completed}</h2>
-        <h3 className='text-xl font-medium'>Completed task</h3>
+      <div className="bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl p-6 shadow-lg hover:shadow-orange-500/20 transition-all duration-200">
+        <h2 className="text-4xl font-bold mb-2">{data.taskCounts.completed}</h2>
+        <h3 className="text-lg font-medium text-orange-100">Completed Tasks</h3>
       </div>
 
-      <div className=' rounded-xl w-[45%] px-9 py-6 bg-yellow-500'> 
-        <h2 className='text-3xl font-semibold'>{data.taskCounts.active}</h2>
-        <h3 className='text-xl font-medium'>Accepted task</h3>
+      <div className="bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-2xl p-6 shadow-lg hover:shadow-yellow-500/20 transition-all duration-200">
+        <h2 className="text-4xl font-bold mb-2">{data.taskCounts.active}</h2>
+        <h3 className="text-lg font-medium text-yellow-100">Active Tasks</h3>
       </div>
 
-      <div className=' rounded-xl w-[45%] px-9 py-6 bg-[#00eeff]'> 
-        <h2 className='text-3xl font-semibold'>{data.taskCounts.failed}</h2>
-        <h3 className='text-xl font-medium'>Failed task</h3>
+      <div className="bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-2xl p-6 shadow-lg hover:shadow-cyan-500/20 transition-all duration-200">
+        <h2 className="text-4xl font-bold mb-2">{data.taskCounts.failed}</h2>
+        <h3 className="text-lg font-medium text-cyan-100">Failed Tasks</h3>
       </div>
-
     </div>
   )
 }

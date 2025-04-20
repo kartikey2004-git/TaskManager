@@ -3,19 +3,15 @@ import { AuthContext } from "../../context/AuthProvider";
 
 const CreateTask = () => {
   const [userData, setUserData] = useContext(AuthContext);
-
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [assignTo, setAssignTo] = useState("");
   const [category, setCategory] = useState("");
-
   const [newTask, setNewTask] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(taskTitle, taskDescription, taskDate, assignTo, category);
-    // as an object banana hai setTask mein jo value ayegi
     setNewTask({
       taskTitle,
       taskDate,
@@ -26,25 +22,16 @@ const CreateTask = () => {
       failed: false,
       completed: true,
     });
-    // console.log(Task);
+
     const data = userData;
-    
+    data.forEach(function (elem) {
+      if (assignTo == elem.firstName) {
+        elem.tasks.push(newTask);
+        elem.taskCounts.newTask = elem.taskCounts.newTask + 1;
+      }
+    });
 
-      data.forEach(function (elem) {
-        // console.log(elem.firstName);
-        if (assignTo == elem.firstName) {
-          // console.log(elem.tasks);
-          elem.tasks.push(newTask);
-          elem.taskCounts.newTask = elem.taskCounts.newTask + 1;
-          // console.log(elem);
-        }
-      });
-
-    setUserData(data)
-    console.log(data);
-
-    
-
+    setUserData(data);
     setAssignTo("");
     setCategory("");
     setTaskDate("");
@@ -53,93 +40,70 @@ const CreateTask = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-800 mt-7 rounded-lg shadow-lg">
-      <form
-        onSubmit={(e) => {
-          submitHandler(e);
-        }}
-        className="flex flex-wrap w-full items-start justify-between gap-6"
-      >
-        <div className="w-full md:w-1/2">
-          <div className="mb-6">
-            <h3 className="text-md text-gray-200 font-semibold mb-2">
-              Task Title
-            </h3>
+    <div className="space-y-4 sm:space-y-6">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-200">Create New Task</h2>
+      <form onSubmit={submitHandler} className="space-y-4 sm:space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="space-y-2">
+            <label className="text-sm sm:text-base text-gray-300 font-medium">Task Title</label>
             <input
               value={taskTitle}
-              onChange={(e) => {
-                // setTasktitle mein value set hojayega tasktitle by targeting the value
-                setTaskTitle(e.target.value);
-              }}
-              className="text-base py-2 px-4 w-full md:w-4/5 rounded-lg outline-none bg-gray-800 text-white border border-gray-500 focus:ring-2 focus:ring-cyan-400 transition-all"
+              onChange={(e) => setTaskTitle(e.target.value)}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-cyan-500/50 text-sm sm:text-base"
               type="text"
-              placeholder="Here is your task"
+              placeholder="Enter task title"
             />
           </div>
 
-          <div className="mb-6">
-            <h3 className="text-md text-gray-200 font-semibold mb-2">Date</h3>
+          <div className="space-y-2">
+            <label className="text-sm sm:text-base text-gray-300 font-medium">Due Date</label>
             <input
               value={taskDate}
-              onChange={(e) => {
-                // setTaskdate mein value set hojayega taskdate by targeting the value
-                setTaskDate(e.target.value);
-              }}
-              className="text-base py-2 px-4 w-full md:w-4/5 rounded-lg outline-none bg-gray-800 text-white border border-gray-500 focus:ring-2 focus:ring-cyan-400 transition-all"
+              onChange={(e) => setTaskDate(e.target.value)}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-cyan-500/50 text-sm sm:text-base"
               type="date"
             />
           </div>
 
-          <div className="mb-6">
-            <h3 className="text-md text-gray-200 font-semibold mb-2">
-              Assign to
-            </h3>
+          <div className="space-y-2">
+            <label className="text-sm sm:text-base text-gray-300 font-medium">Assign To</label>
             <input
               value={assignTo}
-              onChange={(e) => {
-                // setAssign to mein value set hojayega assignTo by targeting the value
-                setAssignTo(e.target.value);
-              }}
-              className="text-base py-2 px-4 w-full md:w-4/5 rounded-lg outline-none bg-gray-800 text-white border border-gray-500 focus:ring-2 focus:ring-cyan-400 transition-all"
+              onChange={(e) => setAssignTo(e.target.value)}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-cyan-500/50 text-sm sm:text-base"
               type="text"
               placeholder="Employee name"
             />
           </div>
 
-          <div className="mb-6">
-            <h3 className="text-md text-gray-200 font-semibold mb-2">
-              Category
-            </h3>
+          <div className="space-y-2">
+            <label className="text-sm sm:text-base text-gray-300 font-medium">Category</label>
             <input
               value={category}
-              onChange={(e) => {
-                // setCategory mein value set hojayega category by targeting the value
-                setCategory(e.target.value);
-              }}
-              className="text-base py-2 px-4 w-full md:w-4/5 rounded-lg outline-none bg-gray-800 text-white border border-gray-500 focus:ring-2 focus:ring-cyan-400 transition-all"
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-cyan-500/50 text-sm sm:text-base"
               type="text"
               placeholder="Design, Dev, etc."
             />
           </div>
         </div>
 
-        <div className="w-full md:w-2/5">
-          <h3 className="text-md text-gray-200 font-semibold mb-2">
-            Description
-          </h3>
+        <div className="space-y-2">
+          <label className="text-sm sm:text-base text-gray-300 font-medium">Task Description</label>
           <textarea
             value={taskDescription}
-            onChange={(e) => {
-              // setTaskDescription mein value set hojayega taskDescription by targeting the value
-              setTaskDescription(e.target.value);
-            }}
-            className="w-full h-44 text-base py-3 px-4 rounded-lg outline-none bg-gray-800 text-white border border-gray-500 focus:ring-2 focus:ring-cyan-400 transition-all"
-            placeholder="Task description"
-          ></textarea>
-          <button className="bg-cyan-500 hover:bg-cyan-600 px-6 py-3 rounded-lg text-base font-semibold mt-6 w-full transition-all duration-200">
-            Create task
-          </button>
+            onChange={(e) => setTaskDescription(e.target.value)}
+            className="w-full px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gray-800/50 border border-gray-700/50 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition-all hover:border-cyan-500/50 min-h-[100px] text-sm sm:text-base"
+            placeholder="Enter task description"
+          />
         </div>
+
+        <button
+          type="submit"
+          className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-cyan-500/20 text-sm sm:text-base"
+        >
+          Create Task
+        </button>
       </form>
     </div>
   );

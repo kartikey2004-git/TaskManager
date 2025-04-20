@@ -12,10 +12,18 @@ const AdminDashboard = (props) => {
   // props is basically a object containing a function changeUser
 
   return (
-    <div className="h-screen w-full p-10 bg-gray-900 text-white">
-      <Header changeUser={props.changeUser} />
-      <CreateTask />
-      <AllTask />
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-4 sm:p-6 md:p-10">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+        <Header changeUser={props.changeUser} />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-xl border border-gray-700/50 hover:shadow-cyan-500/10 transition-all duration-300">
+            <CreateTask />
+          </div>
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-xl border border-gray-700/50 hover:shadow-cyan-500/10 transition-all duration-300">
+            <AllTask />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
